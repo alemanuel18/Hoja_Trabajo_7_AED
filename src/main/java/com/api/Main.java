@@ -3,13 +3,13 @@ package main.java.com.api;
 public class Main {
     public static void main(String[] args) {
         ArbolProductos arbol = new ArbolProductos();
-        String rutaArchivo = "home appliance skus lowes.csv"; // Ruta del archivo CSV
+        String rutaArchivo = "home_appliance_skus_lowes.csv";
 
-        // Cargar productos en el BST
+        // Cargar productos desde archivo CSV
         CSVReader.cargarDesdeCSV(rutaArchivo, arbol);
 
         // Simulación de búsqueda
-        String skuBuscado = "12345"; // SKU de prueba
+        String skuBuscado = "5001252387"; // SKU de prueba
         Producto productoEncontrado = arbol.buscar(skuBuscado);
 
         if (productoEncontrado != null) {
