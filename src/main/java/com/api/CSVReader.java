@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 class CSVReader {
-        public static void cargarDesdeCSV(String rutaArchivo, ArbolProductos arbol) {
+    public static void cargarDesdeCSV(String rutaArchivo, ArbolProductos arbol) {
         File file = new File(rutaArchivo);
         System.out.println("Intentando cargar archivo desde: " + file.getAbsolutePath());
         
@@ -30,12 +30,22 @@ class CSVReader {
                 String[] datos = linea.split(",", -1);
                 if (datos.length < 20)
                     continue; // Validación de columnas
+
                 try {
                     String sku = datos[6].trim();
-                    double priceRetail = Double.parseDouble(datos[9].trim());
-                    double priceCurrent = Double.parseDouble(datos[10].trim());
+                    String priceRetailStr = datos[9].trim();
+                    String priceCurrentStr = datos[10].trim();
                     String productName = datos[18].trim();
                     String category = datos[0].trim();
+
+                    // Validación de campos no vacíos
+                    if (sku.isEmpty() || priceRetailStr.isEmpty() || priceCurrentStr.isEmpty()) {
+                        //System.out.println("Línea " + lineasLeidas + ": Datos incompletos. Se omite.");
+                        continue;
+                    }
+
+                    double priceRetail = Double.parseDouble(priceRetailStr);
+                    double priceCurrent = Double.parseDouble(priceCurrentStr);
 
                     Producto producto = new Producto(sku, priceRetail, priceCurrent, productName, category);
                     arbol.insertar(producto);
