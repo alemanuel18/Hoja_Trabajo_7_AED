@@ -1,30 +1,30 @@
-package main.java.com.api;
+package com.api;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 class CSVReader {
     public static void cargarDesdeCSV(String rutaArchivo, ArbolProductos arbol) {
-        File file = new File(rutaArchivo);
-        System.out.println("Intentando cargar archivo desde: " + file.getAbsolutePath());
-        
-        if (!file.exists()) {
-            System.out.println("ERROR: No se encontró el archivo " + file.getAbsolutePath());
+        ClassLoader classLoader = CSVReader.class.getClassLoader();
+        InputStream inputStream = classLoader.getResourceAsStream(rutaArchivo);
+
+        if (inputStream == null) {
+            System.out.println("ERROR: No se encontró el archivo en resources: " + rutaArchivo);
             return;
         }
-        
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
             String linea = br.readLine(); // Leer encabezado
             if (linea == null) {
                 System.out.println("El archivo está vacío.");
                 return;
             }
-            
+
             int lineasLeidas = 0;
             int productosCargados = 0;
-            
+
             while ((linea = br.readLine()) != null) {
                 lineasLeidas++;
                 String[] datos = linea.split(",", -1);
@@ -40,7 +40,6 @@ class CSVReader {
 
                     // Validación de campos no vacíos
                     if (sku.isEmpty() || priceRetailStr.isEmpty() || priceCurrentStr.isEmpty()) {
-                        //System.out.println("Línea " + lineasLeidas + ": Datos incompletos. Se omite.");
                         continue;
                     }
 
@@ -54,7 +53,7 @@ class CSVReader {
                     System.err.println("Error en línea " + lineasLeidas + ": " + e.getMessage() + " - Datos: " + linea);
                 }
             }
-            
+
             System.out.println("Lectura completa. Líneas leídas: " + lineasLeidas + ", Productos cargados: " + productosCargados);
         } catch (IOException e) {
             System.err.println("Error al leer el archivo CSV: " + e.getMessage());

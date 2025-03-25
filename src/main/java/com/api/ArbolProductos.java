@@ -1,4 +1,4 @@
-package main.java.com.api;
+package com.api;
 
 class ArbolProductos {
     private NodoBST raiz;
