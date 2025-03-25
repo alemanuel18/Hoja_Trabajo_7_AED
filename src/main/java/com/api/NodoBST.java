@@ -1,4 +1,4 @@
-package com.api;
+package main.java.com.api;
 
 public class NodoBST {
     Producto producto;

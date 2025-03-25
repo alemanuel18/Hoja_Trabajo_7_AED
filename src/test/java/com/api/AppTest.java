@@ -1,4 +1,4 @@
-package com.api;
+package test.java.com.api;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
