@@ -5,7 +5,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+/**
+ * Clase para leer y cargar productos desde un archivo CSV.
+ */
 class CSVReader {
+
+    /**
+     * Carga productos desde un archivo CSV y los inserta en un árbol de productos.
+     *
+     * @param rutaArchivo Ruta del archivo CSV dentro de los recursos.
+     * @param arbol       Árbol donde se insertarán los productos cargados.
+     */
     public static void cargarDesdeCSV(String rutaArchivo, ArbolProductos arbol) {
         ClassLoader classLoader = CSVReader.class.getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(rutaArchivo);

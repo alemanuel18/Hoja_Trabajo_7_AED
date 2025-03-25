@@ -1,9 +1,16 @@
 package com.api;
 
+/**
+ * Árbol binario de búsqueda (BST) para almacenar productos.
+ */
 class ArbolProductos {
     private NodoBST raiz;
 
-    // Método para insertar un producto en el BST
+    /**
+     * Inserta un producto en el árbol.
+     *
+     * @param producto Producto a insertar.
+     */
     public void insertar(Producto producto) {
         raiz = insertarRec(raiz, producto);
     }
@@ -20,7 +27,12 @@ class ArbolProductos {
         return nodo;
     }
 
-    // Método para buscar un producto por SKU
+    /**
+     * Busca un producto en el árbol por su SKU.
+     *
+     * @param sku Código único del producto a buscar.
+     * @return El producto encontrado o null si no existe.
+     */
     public Producto buscar(String sku) {
         return buscarRec(raiz, sku);
     }

@@ -7,17 +7,23 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * Unit test for simple App.
+ * Pruebas unitarias para la clase ArbolProductos.
  */
 public class AppTest 
 {
     private ArbolProductos arbol;
 
+    /**
+     * Configuración inicial antes de cada prueba.
+     */
     @BeforeEach
     void setUp() {
         arbol = new ArbolProductos();
     }
 
+    /**
+     * Prueba para insertar y buscar productos en el árbol.
+     */
     @Test
     void testInsertarYBuscar() {
         Producto producto1 = new Producto("12345", 100.0, 80.0, "Producto A", "Categoría A");
@@ -33,6 +39,10 @@ public class AppTest
         assertEquals(producto2, encontrado2);
         assertNull(noEncontrado);
     }
+
+    /**
+     * Prueba para verificar que no se inserten productos duplicados.
+     */
     @Test
     void testInsertarDuplicado() {
         Producto producto1 = new Producto("12345", 100.0, 80.0, "Producto A", "Categoría A");
@@ -47,6 +57,10 @@ public class AppTest
         assertEquals(producto1, encontrado);
         assertNotEquals(productoDuplicado, encontrado);
     }
+
+    /**
+     * Prueba para buscar un producto en un árbol vacío.
+     */
     @Test
     void testBuscarEnArbolVacio() {
         Producto noEncontrado = arbol.buscar("12345");

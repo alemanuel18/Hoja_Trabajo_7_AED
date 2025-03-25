@@ -2,7 +2,16 @@ package com.api;
 
 import java.util.Scanner;
 
+/**
+ * Clase principal para ejecutar el programa de gestión de productos.
+ */
 public class Main {
+
+    /**
+     * Método principal que ejecuta el programa.
+     *
+     * @param args Argumentos de línea de comandos (no utilizados).
+     */
     public static void main(String[] args) {
         ArbolProductos arbol = new ArbolProductos();
         String rutaArchivo = "home_appliance_skus_lowes.csv";
